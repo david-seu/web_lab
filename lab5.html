@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sortable Table</title>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<table id="sortable-table">
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">Column 1</th>
+      <th onclick="sortTable(1)">Column 2</th>
+      <th onclick="sortTable(2)">Column 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>A</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>C</td>
+      <td>Z</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>B</td>
+      <td>Y</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+var direction = "asc";
+
+function sortTable(columnIndex) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("sortable-table");
+  switching = true;
+
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+
+    for (i = 1; i < rows.length - 1; i++) { 
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[columnIndex];
+      y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+      if (direction === "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+
+  direction = direction === "asc" ? "desc" : "asc";
+}
+</script>
+
+</body>
+</html>
