@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#openModal").click(function(){
+    $("#modal").show();
+    $("#overlay").show();
+    $("#mainForm input").prop("disabled", true);
+  });
+  $("#addToMainForm").click(function(){
+    var field1 = $("#modalField1").val() + $("#modalField2").val() + $("#modalField3").val() + $("#modalField4").val();
+    
+    $("#field1").val(field1);
+    
+    $("#modal").hide();
+    $("#overlay").hide();
+    $("#mainForm input").prop("disabled", false);
+  })
+});
+</script>
+</head>
+<body>
+<h1>Form</h1>
+<form id="mainForm">
+    <label for="field1">Field 1:</label>
+    <input type="text" id="field1" name="field1"><br><br>
+    
+    <label for="field2">Field 2:</label>
+    <input type="text" id="field2" name="field2"><br><br>
+    
+    <label for="field3">Field 3:</label>
+    <input type="text" id="field3" name="field3"><br><br>
+    
+    <label for="field4">Field 4:</label>
+    <input type="text" id="field4" name="field4"><br><br>
+    
+    <label for="field5">Field 5:</label>
+    <input type="text" id="field5" name="field5"><br><br>
+</form>
+
+<button id="openModal">Open Modal</button><br><br>
+<div id="overlay" style="display: none; position: absolute; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); top: 0; left: 0;"></div>
+<div id="modal" style="display:none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 5px solid; padding: 10px; background-color: antiquewhite;">
+    <label for="modalField1">Modal Field 1:</label>
+    <input type="text" id="modalField1"><br><br>
+    
+    <label for="modalField2">Modal Field 2:</label>
+    <input type="text" id="modalField2"><br><br>
+    
+    <label for="modalField3">Modal Field 3:</label>
+    <input type="text" id="modalField3"><br><br>
+    
+    <label for="modalField4">Modal Field 4:</label>
+    <input type="text" id="modalField4"><br><br>
+    
+    <button id="addToMainForm">Add to Main Form</button>
+</div>
+
+</body>
+</html>
